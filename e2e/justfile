@@ -1,0 +1,33 @@
+#!/usr/bin/env just --justfile
+
+_default:
+  @just --list
+
+get-all:
+  http :8080/books
+
+get-by-id uuid:
+  http :8080/books/{{uuid}}
+
+post:
+  http PUT :8080/books < resources/book1.json
+
+put-when-exists:
+  http PUT :8080/books/99999 < resources/book2.json
+
+put-when-doesnt-exist:
+  http PUT :8080/books/88888 < resources/book3.json
+
+delete:
+  http DELETE :8080/books/99999
+
+demo:
+  just get-all
+  just post
+  just get-all
+  just put-when-exists
+  just get-all
+  just put-when-doesnt-exist
+  just get-all
+  just delete
+  just get-all

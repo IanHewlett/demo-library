@@ -1,4 +1,5 @@
 #!/usr/bin/env just --justfile
+set fallback
 
 _default:
   @just --list

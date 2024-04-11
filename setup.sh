@@ -12,6 +12,9 @@ install_homebrew() {
 
 brew install just
 brew install jq
+brew install openjdk
 brew install httpie
 brew install docker
 brew install podman
+sudo /usr/local/Cellar/podman/5.0.1/bin/podman-mac-helper install
+https://podman-desktop.io/docs/migrating-from-docker/using-the-docker_host-environment-variable

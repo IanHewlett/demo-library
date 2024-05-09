@@ -15,9 +15,9 @@ test:
     ./gradlew test
 
 # initialize podman-machine if it does not exist, and then start the podman-machine if it is not running
-@podman:
+@podman user="":
   (podman machine ls | grep -q {{podman_machine}} && [[ $? -eq 0 ]] && echo "podman machine exists") \
-    || (echo "initializing podman machine" && podman machine init --cpus 6 --memory 10048 --disk-size 20 --rootful -v $(pwd):/app/ {{podman_machine}})
+    || (echo "initializing podman machine" && podman machine init --cpus 6 --memory 10048 --disk-size 20 --rootful -v /Users/{{user}}:/Users/{{user}} {{podman_machine}})
   (podman machine inspect {{podman_machine}} | grep -q '"State": "running"' && [[ $? -eq 0 ]] && echo "podman machine running") \
       || (echo "starting podman machine" && podman machine start {{podman_machine}})
   podman system connection default {{podman_machine}}-root
